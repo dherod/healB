@@ -1,0 +1,64 @@
+﻿@model healB.Models.vital
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>vital</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.vital_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.vital_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.systolic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.systolic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.diastolic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.diastolic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.heart_rate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.heart_rate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.weight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.waist)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.waist)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.vital_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,84 @@
+﻿@model healB.Models.vital
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>vital</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.vital_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.vital_id)
+            @Html.ValidationMessageFor(model => model.vital_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.systolic)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.systolic)
+            @Html.ValidationMessageFor(model => model.systolic)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.diastolic)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.diastolic)
+            @Html.ValidationMessageFor(model => model.diastolic)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.heart_rate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.heart_rate)
+            @Html.ValidationMessageFor(model => model.heart_rate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.weight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.weight)
+            @Html.ValidationMessageFor(model => model.weight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.waist)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.waist)
+            @Html.ValidationMessageFor(model => model.waist)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.date)
+            @Html.ValidationMessageFor(model => model.date)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
