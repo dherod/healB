@@ -5,7 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8a6db83d89034902b8033f37a70dcbe9" Name="Diagram1">
-        <EntityTypeShape EntityType="healBModel.vital" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="healBModel.vital" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="healBModel.medicine" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="healBModel.time" Width="1.5" PointX="5.75" PointY="2" />
+        <AssociationConnector Association="healBModel.FK_medicine_time" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

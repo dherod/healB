@@ -26,5 +26,7 @@ namespace healB.Models
         }
     
         public DbSet<vital> vitals { get; set; }
+        public DbSet<medicine> medicines { get; set; }
+        public DbSet<time> times { get; set; }
     }
 }

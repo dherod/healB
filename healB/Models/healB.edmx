@@ -4,10 +4,36 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="healBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="healBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="healBModelStoreContainer">
+          <EntitySet Name="medicine" EntityType="healBModel.Store.medicine" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="time" EntityType="healBModel.Store.time" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vital" EntityType="healBModel.Store.vital" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_medicine_time" Association="healBModel.Store.FK_medicine_time">
+            <End Role="time" EntitySet="time" />
+            <End Role="medicine" EntitySet="medicine" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="medicine">
+          <Key>
+            <PropertyRef Name="medicine_id" />
+          </Key>
+          <Property Name="medicine_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="dosage" Type="varchar" MaxLength="50" />
+          <Property Name="time_id" Type="int" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="is_prescription" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="vital">
           <Key>
             <PropertyRef Name="vital_id" />
@@ -20,13 +46,30 @@
           <Property Name="waist" Type="numeric" Precision="4" Scale="1" />
           <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_medicine_time">
+          <End Role="time" Type="healBModel.Store.time" Multiplicity="0..1" />
+          <End Role="medicine" Type="healBModel.Store.medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="medicine">
+              <PropertyRef Name="time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="healBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="healBEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="vitals" EntityType="healBModel.vital" />
+          <EntitySet Name="medicines" EntityType="healBModel.medicine" />
+          <EntitySet Name="times" EntityType="healBModel.time" />
+          <AssociationSet Name="FK_medicine_time" Association="healBModel.FK_medicine_time">
+            <End Role="time" EntitySet="times" />
+            <End Role="medicine" EntitySet="medicines" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="vital">
           <Key>
@@ -40,6 +83,40 @@
           <Property Name="waist" Type="Decimal" Precision="4" Scale="1" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
+        <EntityType Name="medicine">
+          <Key>
+            <PropertyRef Name="medicine_id" />
+          </Key>
+          <Property Type="Int32" Name="medicine_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="dosage" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="time_id" />
+          <Property Type="DateTime" Name="start_date" Precision="0" />
+          <Property Type="DateTime" Name="end_date" Precision="0" />
+          <Property Type="Boolean" Name="is_prescription" Nullable="false" />
+          <NavigationProperty Name="time" Relationship="healBModel.FK_medicine_time" FromRole="medicine" ToRole="time" />
+        </EntityType>
+        <EntityType Name="time">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Type="Int32" Name="time_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="medicines" Relationship="healBModel.FK_medicine_time" FromRole="time" ToRole="medicine" />
+        </EntityType>
+        <Association Name="FK_medicine_time">
+          <End Type="healBModel.time" Role="time" Multiplicity="0..1" />
+          <End Type="healBModel.medicine" Role="medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="time">
+              <PropertyRef Name="time_id" />
+            </Principal>
+            <Dependent Role="medicine">
+              <PropertyRef Name="time_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -56,6 +133,28 @@
                 <ScalarProperty Name="weight" ColumnName="weight" />
                 <ScalarProperty Name="waist" ColumnName="waist" />
                 <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="medicines">
+            <EntityTypeMapping TypeName="healBModel.medicine">
+              <MappingFragment StoreEntitySet="medicine">
+                <ScalarProperty Name="is_prescription" ColumnName="is_prescription" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="dosage" ColumnName="dosage" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="medicine_id" ColumnName="medicine_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="times">
+            <EntityTypeMapping TypeName="healBModel.time">
+              <MappingFragment StoreEntitySet="time">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

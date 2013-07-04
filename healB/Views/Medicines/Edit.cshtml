@@ -1,0 +1,84 @@
+﻿@model healB.Models.medicine
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>medicine</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.medicine_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.medicine_id)
+            @Html.ValidationMessageFor(model => model.medicine_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dosage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dosage)
+            @Html.ValidationMessageFor(model => model.dosage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.time_id, "time")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("time_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.time_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.start_date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.start_date)
+            @Html.ValidationMessageFor(model => model.start_date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.end_date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.end_date)
+            @Html.ValidationMessageFor(model => model.end_date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.is_prescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.is_prescription)
+            @Html.ValidationMessageFor(model => model.is_prescription)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

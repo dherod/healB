@@ -185,6 +185,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedicinesController.cs" />
     <Compile Include="Controllers\VitalsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,6 +206,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>healB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\medicine.cs">
+      <DependentUpon>healB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\time.cs">
+      <DependentUpon>healB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vital.cs">
       <DependentUpon>healB.tt</DependentUpon>
@@ -344,6 +351,11 @@
     <Content Include="Views\Vitals\Create.cshtml" />
     <Content Include="Views\Vitals\Edit.cshtml" />
     <Content Include="Views\Vitals\Delete.cshtml" />
+    <Content Include="Views\Medicines\Index.cshtml" />
+    <Content Include="Views\Medicines\Details.cshtml" />
+    <Content Include="Views\Medicines\Create.cshtml" />
+    <Content Include="Views\Medicines\Edit.cshtml" />
+    <Content Include="Views\Medicines\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
