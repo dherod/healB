@@ -12,9 +12,6 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.vital_id)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.systolic)
         </th>
         <th>
@@ -37,9 +34,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.vital_id)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.systolic)
         </td>

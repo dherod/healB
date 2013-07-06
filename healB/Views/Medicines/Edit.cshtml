@@ -13,10 +13,10 @@
     <fieldset>
         <legend>medicine</legend>
 
-        <div class="editor-label">
+        <div class="editor-label primary-key">
             @Html.LabelFor(model => model.medicine_id)
         </div>
-        <div class="editor-field">
+        <div class="editor-field primary-key">
             @Html.EditorFor(model => model.medicine_id)
             @Html.ValidationMessageFor(model => model.medicine_id)
         </div>
