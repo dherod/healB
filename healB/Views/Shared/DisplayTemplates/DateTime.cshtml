@@ -1,0 +1,3 @@
+﻿@model System.DateTime?
+
+@Html.Label("", Model == null ? "" : Model.Value.ToString("MM/dd/yy"), new { @class = "nofontweight"} )

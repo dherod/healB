@@ -356,6 +356,8 @@
     <Content Include="Views\Medicines\Create.cshtml" />
     <Content Include="Views\Medicines\Edit.cshtml" />
     <Content Include="Views\Medicines\Delete.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
