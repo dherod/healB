@@ -41,7 +41,7 @@
             @Html.LabelFor(model => model.weight)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.weight)
+            @Html.EditorFor(model => model.weight, "F1Template")
             @Html.ValidationMessageFor(model => model.weight)
         </div>
 
@@ -49,7 +49,7 @@
             @Html.LabelFor(model => model.waist)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.waist)
+            @Html.EditorFor(model => model.waist, "F2Template")
             @Html.ValidationMessageFor(model => model.waist)
         </div>
 

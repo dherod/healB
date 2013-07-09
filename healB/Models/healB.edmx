@@ -43,7 +43,7 @@
           <Property Name="diastolic" Type="int" />
           <Property Name="heart_rate" Type="int" />
           <Property Name="weight" Type="numeric" Precision="5" Scale="1" />
-          <Property Name="waist" Type="numeric" Precision="4" Scale="1" />
+          <Property Name="waist" Type="numeric" Precision="5" Scale="2" />
           <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
         <Association Name="FK_medicine_time">
@@ -80,7 +80,7 @@
           <Property Name="diastolic" Type="Int32" />
           <Property Name="heart_rate" Type="Int32" />
           <Property Name="weight" Type="Decimal" Precision="5" Scale="1" />
-          <Property Name="waist" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="waist" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="medicine">
